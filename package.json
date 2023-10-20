@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "openai": "^4.12.4"
+  },
+  "name": "eneisoft-prompt-engineering",
+  "version": "1.0.0",
+  "description": "Este proyecto muestra cómo interactuar con el modelo de lenguaje GPT-3 de OpenAI utilizando Node.js.",
+  "main": "openai-hello-world.js",
+  "scripts": {
+    "hello": "node openai-hello-world.js",
+    "basic": "node openai.js",
+    "interactive": "node openai-interactive.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "prompt",
+    "engineering",
+    "eneisoft"
+  ],
+  "author": "Olvis Quintana",
+  "license": "ISC"
+}
