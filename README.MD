@@ -41,17 +41,25 @@ Este proyecto muestra cómo interactuar con el modelo de lenguaje GPT-3 de OpenA
 
 4. **Configurar las variables de entorno**
 
-   Crear un archivo `.env` en la raíz del proyecto y añadir la API key de OpenAI:
-
-   ```
-   OPENAI_API_TOKEN=TuAPIKeyAquí
-   ```
+   - Copia el archivo `.env-example` y renómbralo a `.env`.
+   
+     ```
+     cp .env-example .env
+     ```
+   
+   - Abre el archivo `.env` con un editor de texto y añade tu API key de OpenAI:
+   
+     ```
+     OPENAI_API_TOKEN=TuAPIKeyAquí
+     ```
 
 5. **Ejecutar el script**
 
    ```
    node openai.js
    ```
+   O con los scripts npm:
+   
    ```
    npm run hello
    ```
@@ -71,5 +79,3 @@ Este proyecto incluye un script de ejemplo `openai.js` que muestra cómo realiza
 Si tienes alguna mejora o característica que te gustaría añadir, siéntete libre de hacer un pull request.
 
 ---
-
-Espero que este README sea útil para entender cómo instalar y ejecutar el proyecto.
