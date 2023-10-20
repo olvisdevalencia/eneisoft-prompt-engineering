@@ -1,7 +1,8 @@
 import OpenAI from "openai";
 import readline from "readline";
 import { config } from 'dotenv';
-import { prompt } from './shoeStorePrompt.js'; // Asegúrate de tener este archivo y que exporte el prompt
+import chalk from 'chalk';
+import { prompt } from './shoeStorePrompt.js'; 
 
 config();
 
@@ -14,14 +15,15 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-let resetConversation = false; // Variable para controlar el reinicio de la conversación
+let resetConversation = false; 
 
 async function chatLoop(messages) {
   let interval;
 
   try {
+    console.time(chalk.green("Tiempo de ejecución"));  
     interval = setInterval(() => {
-      process.stdout.write('.'); // Imprime un punto cada 500 ms
+      process.stdout.write(chalk.yellow('.')); 
     }, 500);
 
     const completion = await openai.chat.completions.create({
@@ -29,12 +31,13 @@ async function chatLoop(messages) {
       model: "gpt-3.5-turbo",
     });
 
-    clearInterval(interval); // Detiene el intervalo cuando se obtiene la respuesta
+    clearInterval(interval); 
+    console.timeEnd(chalk.green("Tiempo de ejecución"));
 
     const assistantMessage = completion.choices[0].message.content;
-    console.log(`\nAsistente: ${assistantMessage}`);
+    console.log(chalk.red(`\nAsistente: ${assistantMessage}`));
 
-    rl.question("Tú: ", async (userInput) => {
+    rl.question(chalk.blue("Tú: "), async (userInput) => {
       if (userInput.toLowerCase() === 'salir') {
         rl.close();
         return;
@@ -57,10 +60,9 @@ async function chatLoop(messages) {
       await chatLoop(messages);
     });
   } catch (error) {
-    clearInterval(interval); // Asegura que el intervalo se detenga en caso de error
-    console.error('Se produjo un error:', error);
+    clearInterval(interval); 
+    console.error(chalk.red('Se produjo un error:', error));
   }
 }
 
-// Inicia el chat
 chatLoop(prompt);
